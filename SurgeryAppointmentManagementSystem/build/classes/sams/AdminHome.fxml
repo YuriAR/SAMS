@@ -51,11 +51,12 @@
                   <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Button fx:id="homeOneBtn" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="180.0" text="Manage appointments" />
+                                    <Button fx:id="homeOneBtn" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="180.0" text="Manage appointments" />
                   <Button fx:id="homeTwoBtn" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="180.0" text="Write a patient summary" GridPane.rowIndex="1" />
                   <Button fx:id="homeThreeBtn" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="180.0" text="Manage patients" GridPane.rowIndex="2" />
                   <Button fx:id="homeFourBtn" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="180.0" text="Manage patient summary" GridPane.rowIndex="3" />
-                  <Button fx:id="logoutBtn" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="180.0" text="Log out" GridPane.rowIndex="4" />
+                  <Button fx:id="searchBtn" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="180.0"  text="Search" GridPane.rowIndex="4" />
+                  <Button fx:id="logoutBtn" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="180.0" text="Log out" GridPane.rowIndex="5" />
                </children>
             </GridPane>
             <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />

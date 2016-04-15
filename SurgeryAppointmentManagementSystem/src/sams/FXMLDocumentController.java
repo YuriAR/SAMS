@@ -25,7 +25,7 @@ import javafx.stage.Stage;
 public class FXMLDocumentController implements Initializable {
     
     @FXML
-    Button loginBtn, logoutBtn, dummyBtn;    
+    Button loginBtn, logoutBtn, dummyBtn, searchBtn;    
     @FXML
     Button homeOneBtn;
     @FXML
@@ -102,6 +102,14 @@ public class FXMLDocumentController implements Initializable {
         if(event.getSource() == homeFourBtn) {
             stage = (Stage)homeFourBtn.getScene().getWindow();
             stage.close();root = FXMLLoader.load(getClass().getResource("dummy.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+        
+        if(event.getSource() == searchBtn) {
+            stage = (Stage)searchBtn.getScene().getWindow();
+            stage.close();root = FXMLLoader.load(getClass().getResource("SearchScreen.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
