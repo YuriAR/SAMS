@@ -142,7 +142,7 @@ public class FXMLSearchController implements Initializable {
                     
                     cName.setCellValueFactory(new PropertyValueFactory<Condition, String>("cName"));
                     cDesc.setCellValueFactory(new PropertyValueFactory<Condition, String>("cDesc"));
-                    tLevel.setCellValueFactory(new PropertyValueFactory<Condition, String>("cThreat_level"));
+                    tLevel.setCellValueFactory(new PropertyValueFactory<Condition, String>("tLevel"));
                     
                     tableViewSearch.getColumns().addAll(columns);
                     break;
