@@ -126,8 +126,8 @@ public class FXMLSearchController implements Initializable {
                     columns.add(spName);
                     columns.add(summary);
                     
-                    spName.setCellValueFactory(new PropertyValueFactory<Summary, String>("pName"));
-                    summary.setCellValueFactory(new PropertyValueFactory<Summary, String>("aSummary"));
+                    spName.setCellValueFactory(new PropertyValueFactory<Summary, String>("spName"));
+                    summary.setCellValueFactory(new PropertyValueFactory<Summary, String>("summary"));
                     
                     tableViewSearch.getColumns().addAll(columns);
                     break;
