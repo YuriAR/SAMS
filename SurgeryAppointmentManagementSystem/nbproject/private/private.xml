@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/mypc/Documents/NetBeansProjects/SurgeryAppointmentManagementSystem/src/sams/AdminHome.fxml</file>
-            <file>file:/C:/Users/mypc/Documents/NetBeansProjects/SurgeryAppointmentManagementSystem/src/sams/DatabaseHelper.java</file>
-            <file>file:/C:/Users/mypc/Documents/NetBeansProjects/SurgeryAppointmentManagementSystem/src/sams/SAMS.java</file>
-            <file>file:/C:/Users/mypc/Documents/NetBeansProjects/SurgeryAppointmentManagementSystem/src/sams/loginScreen.fxml</file>
-            <file>file:/C:/Users/mypc/Documents/NetBeansProjects/SurgeryAppointmentManagementSystem/src/sams/FXMLDocumentController.java</file>
+            <file>file:/Users/yurireis/Documents/Turkletons/SAMS/SurgeryAppointmentManagementSystem/src/sams/FXMLDocumentController.java</file>
         </group>
     </open-files>
 </project-private>
