@@ -32,7 +32,7 @@
          <children>
             <DatePicker prefHeight="25.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
             <Label prefHeight="25.0" prefWidth="185.0" text="       Appointments for today" textFill="WHITE" GridPane.columnIndex="4" />
-            <ListView fx:id="todaysApp" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
+            <ListView fx:id="todo" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
             <Label prefHeight="35.0" prefWidth="150.0" text="Hello Dr. Dark" textFill="WHITE" GridPane.columnIndex="2">
                <font>
                   <Font size="24.0" />
@@ -59,7 +59,7 @@
                   <Button fx:id="logoutBtn" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="180.0" text="Log out" GridPane.rowIndex="5" />
                </children>
             </GridPane>
-            <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <ListView fx:id="todaysApp" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </children>

@@ -82,6 +82,7 @@ public class DatabaseHelper {
                    " pId INT REFERENCES PATIENT(pId), " +
                    " uName VARCHAR(25) REFERENCES USER(uName), " + 
                    " aDate_Created DATE, " + 
+                   " aDate DATE, " + 
                    " aDatetime datetime, " + 
                    " aType VARCHAR(25), " +
                    " aSummary VARCHAR(2550), " +
@@ -187,10 +188,10 @@ public class DatabaseHelper {
    stmt = conn.createStatement();
    List array= new ArrayList();
    Date dNow= new Date();
-   SimpleDateFormat ft = new SimpleDateFormat("yyyy MM dd hh:mm:ss");
+   SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
    
    
-   String sql = "SELECT pID, aDatetime from appointment where aDatetime='"+ft.format(dNow)+"'";
+   String sql = "SELECT aDatetime from appointment where aDate ='"+ft.format(dNow)+"'";
    ResultSet rs = stmt.executeQuery(sql);
    while(rs.next()){
    array.add(rs.getString(1));

@@ -14,6 +14,7 @@ public class SAMS extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
+        DatabaseHelper.creates();
         Parent root = FXMLLoader.load(getClass().getResource("loginScreen.fxml"));
         
         Scene scene = new Scene(root);
