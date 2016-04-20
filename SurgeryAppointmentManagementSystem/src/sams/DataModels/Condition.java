@@ -12,10 +12,19 @@ import java.util.Objects;
  * @author yurireis
  */
 public class Condition {
+    private String cId;
     private String cName;
     private String cDesc;
     private String tLevel;
 
+    public String getCID(){
+        return cId;
+    }
+    
+    public void setCID(){
+        this.cId = cId;
+    }
+    
     public String getCName() {
         return cName;
     }

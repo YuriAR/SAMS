@@ -79,7 +79,7 @@ public class DatabaseHelper {
       stmt.addBatch(sql);
              sql = "CREATE TABLE IF NOT EXISTS APPOINTMENT " +
                    "(aNo INT not NULL AUTO_INCREMENT, " +
-                   " pId INT REFERENCES PATIENT(pId), " +
+                   " pId INT REFERENCES PATIENTS(pId), " +
                    " uName VARCHAR(25) REFERENCES USER(uName), " + 
                    " aDate_Created DATE, " + 
                    " aDate DATE, " + 
@@ -122,17 +122,6 @@ public class DatabaseHelper {
       conn.close();
    }//end main
    
-   public static void insert(String table, String data) throws SQLException{
-   Connection conn;
-   Statement stmt;
-   conn = getConnection();
-   stmt = conn.createStatement();
-   
-   String sql = "insert into '"+table+"' values('"+data+"')";
-   stmt.executeUpdate(sql);
-   stmt.close();
-   conn.close();
-   }
    
    public static int login(String username, String password) throws SQLException{
    Connection conn;
@@ -154,16 +143,78 @@ public class DatabaseHelper {
    
    }
    
-   public static void view(String table, String data) throws SQLException{
-   Connection conn;
-   Statement stmt;
-   conn = getConnection();
-   stmt = conn.createStatement();
+public static List view2(String table) throws SQLException{
+        Connection conn;
+        Statement stmt;
+        conn = getConnection();
+        stmt = conn.createStatement();
+        String query = "SELECT * FROM "+table;
+     
+        List results = new ArrayList<>();
+          ResultSet rs = stmt.executeQuery(query);
+           //results.add(rs);
+           while(rs.next()) {
+                switch(table){
+                    case "Patients":
+                        Patient p = new Patient();
+                        p.setPID(rs.getString("PID"));
+                        p.setPName(rs.getString("pName"));
+                        p.setPSurname(rs.getString("pSurname"));
+                        p.setPEmail(rs.getString("pEmail"));
+                        p.setPAddress(rs.getString("pAddress"));
+                        p.setPMobPhone(rs.getString("pMobPhone"));
+                        results.add(p);
+                        break;
+                    case "Appointment":
+                        Appointment a = new Appointment();
+                        a.setApName(rs.getString("pName"));
+                        a.setADate(rs.getDate("aDatetime"));
+                        a.setAType(rs.getString("aType"));
+                        results.add(a);
+                        break;
+                    case "Conditions":
+                        Condition c = new Condition();
+                        c.setCName(rs.getString("cName"));
+                        c.setCDesc(rs.getString("cDesc"));
+                        c.setTLevel(rs.getString("cThreat_level"));
+                        results.add(c);
+                        break;
+                    case "Summaries":
+                        Summary s = new Summary();
+                        s.setSpName(rs.getString("pName"));
+                        s.setSummary(rs.getString("aSummary"));
+                        results.add(s);
+                        break;
+           }
+        }
+        Set s = new HashSet();
+        s.addAll(results);
+        results.clear();
+        results.addAll(s);
+        return results;
+
+   }
    
-   String sql = "select * from '"+table+"' values('"+data+"')";
-   stmt.executeUpdate(sql);
-   stmt.close();
-   conn.close();
+   static void delete(String table, String field, String id) throws SQLException{
+       Connection conn;
+       Statement stmt;
+       conn = getConnection();
+       stmt = conn.createStatement();
+       String sql = "DELETE FROM "+table+" WHERE "+field+"='"+id+"'";
+       stmt.executeUpdate(sql);
+       stmt.close();
+       conn.close();
+   }
+   
+   static void update(String table, String field, String value, String id) throws SQLException{
+       Connection conn;
+       Statement stmt;
+       conn = getConnection();
+       stmt = conn.createStatement();
+       String sql = "UPDATE "+table+" SET "+field+"='"+value+"' WHERE pID='"+id+"'";
+       stmt.executeUpdate(sql);
+       stmt.close();
+       conn.close();
    }
    
   public static String getPrivileges(String username, String password) throws SQLException{
@@ -199,7 +250,7 @@ public class DatabaseHelper {
       return array;
   }
   
-  void insertPatient(String name, String lastname, String homephone, String mobile, String email, String address, String sex, String dob) throws SQLException{
+  public static void insertPatient(String name, String lastname, String homephone, String mobile, String email, String address, String sex, String dob) throws SQLException{
     Connection conn;
     Statement stmt;
     conn = getConnection();
@@ -210,6 +261,22 @@ public class DatabaseHelper {
     stmt.close();
     conn.close();
    }
+  
+  public static void insertAppointment(String datetime, String appointmentType) throws SQLException{
+     Connection conn;
+     Statement stmt;
+     conn = getConnection();
+     stmt = conn.createStatement();
+     
+     Date dNow= new Date();
+     SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+     datetime = ft.format(dNow);
+     
+     String sql = "insert into appointment (aDate_Created, aDatetime, aType) values(sysdate(), '"+datetime+"', '"+appointmentType+"')";
+     stmt.executeUpdate(sql);
+     stmt.close();
+     conn.close();
+  }
   
      public static List search(String table, String keyword) throws SQLException{
         Connection conn;
@@ -229,7 +296,7 @@ public class DatabaseHelper {
                          "SELECT * FROM Patients where pAddress like '%"+ keyword + "%'"};
         }
         else if (table.equals("Appointment")){
-            query = new String[]{"SELECT * FROM Appointment join Patients using (pId) where aDate like '%"+ keyword + "%'", 
+            query = new String[]{"SELECT * FROM Appointment join Patients using (pId) where aDatetime like '%"+ keyword + "%'", 
                          "SELECT * FROM Appointment join Patients using (pId) where aType like '%"+ keyword + "%'",
                          "SELECT * FROM Appointment join Patients using (pId) where pName like '%"+ keyword + "%'"};
         }
@@ -257,7 +324,7 @@ public class DatabaseHelper {
                     case "Appointment":
                         Appointment a = new Appointment();
                         a.setApName(rs.getString("pName"));
-                        a.setADate(rs.getDate("aDate"));
+                        a.setADate(rs.getDate("aDatetime"));
                         a.setAType(rs.getString("aType"));
                         results.add(a);
                         break;

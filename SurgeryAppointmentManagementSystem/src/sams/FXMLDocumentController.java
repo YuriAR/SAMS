@@ -79,7 +79,7 @@ public class FXMLDocumentController implements Initializable {
         
         if(event.getSource() == homeOneBtn) {
             stage = (Stage)homeOneBtn.getScene().getWindow();
-            stage.close();root = FXMLLoader.load(getClass().getResource("dummy.fxml"));
+            root = FXMLLoader.load(getClass().getResource("viewScreen.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
@@ -87,7 +87,7 @@ public class FXMLDocumentController implements Initializable {
         
         if(event.getSource() == homeTwoBtn) {
             stage = (Stage)homeTwoBtn.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("dummy.fxml"));
+            root = FXMLLoader.load(getClass().getResource("summary.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();

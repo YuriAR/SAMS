@@ -13,10 +13,28 @@ import java.util.Objects;
  * @author yurireis
  */
 public class Appointment {
+    private String apId;
     private String apName;
     private Date aDate;
     private String aType;
+    private String summary;
 
+    public void setSummary(String summary){
+        this.summary = summary;
+    }
+    
+    public String getSummary(){
+        return summary;
+    }
+    
+    public String getApID(){
+        return apId;
+    }
+    
+    public void setApID(){
+        this.apId = apId;
+    }
+    
     public String getApName() {
         return apName;
     }

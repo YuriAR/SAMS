@@ -13,11 +13,21 @@ import java.util.Objects;
  */
 public class Patient {
 
+    private String pID;
     private String pName;
     private String pSurname;
     private String pEmail;
     private String pAddress;
     private String pMobPhone;
+    private String pSummary;
+    
+    public String getPID(){
+        return pID;
+    }
+    
+    public void setPID(String pID){
+        this.pID = pID;
+    }
 
     public String getPName() {
         return pName;
