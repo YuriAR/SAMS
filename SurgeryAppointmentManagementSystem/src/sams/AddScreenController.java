@@ -66,7 +66,7 @@ public class AddScreenController implements Initializable {
         
         if(event.getSource() == summaryBtn) {
             stage = (Stage)summaryBtn.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("AdminHome.fxml")); //change into view.fxml
+            root = FXMLLoader.load(getClass().getResource("viewScreen.fxml")); //change into view.fxml
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();

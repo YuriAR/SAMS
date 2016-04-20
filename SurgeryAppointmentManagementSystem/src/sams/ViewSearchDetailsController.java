@@ -34,7 +34,7 @@ public class ViewSearchDetailsController implements Initializable {
     public void handleViewInfo(ActionEvent event) throws IOException{
     if(event.getSource() == backBtn){
             Stage stage = (Stage)backBtn.getScene().getWindow();
-            Parent root = FXMLLoader.load(getClass().getResource("view.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("viewScreen.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
