@@ -148,7 +148,7 @@ public class FXMLSearchController implements Initializable {
                     break;
                 case "Appointment":
                     TableColumn apName = new TableColumn("Patient Name");
-                    TableColumn aDate = new TableColumn("Date and time");
+                    TableColumn aDate = new TableColumn("Date");
                     TableColumn aType = new TableColumn("Type");
                     
                     columns.add(apName);

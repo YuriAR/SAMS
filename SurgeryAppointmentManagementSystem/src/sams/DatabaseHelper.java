@@ -229,7 +229,7 @@ public class DatabaseHelper {
                          "SELECT * FROM Patients where pAddress like '%"+ keyword + "%'"};
         }
         else if (table.equals("Appointment")){
-            query = new String[]{"SELECT * FROM Appointment join Patients using (pId) where aDatetime like '%"+ keyword + "%'", 
+            query = new String[]{"SELECT * FROM Appointment join Patients using (pId) where aDate like '%"+ keyword + "%'", 
                          "SELECT * FROM Appointment join Patients using (pId) where aType like '%"+ keyword + "%'",
                          "SELECT * FROM Appointment join Patients using (pId) where pName like '%"+ keyword + "%'"};
         }
@@ -257,7 +257,7 @@ public class DatabaseHelper {
                     case "Appointment":
                         Appointment a = new Appointment();
                         a.setApName(rs.getString("pName"));
-                        a.setADate(rs.getDate("aDatetime"));
+                        a.setADate(rs.getDate("aDate"));
                         a.setAType(rs.getString("aType"));
                         results.add(a);
                         break;
