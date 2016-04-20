@@ -79,10 +79,9 @@ public class DatabaseHelper {
       stmt.addBatch(sql);
              sql = "CREATE TABLE IF NOT EXISTS APPOINTMENT " +
                    "(aNo INT not NULL AUTO_INCREMENT, " +
-                   " pId INT REFERENCES PATIENTS(pId), " +
+                   " pId INT REFERENCES PATIENT(pId), " +
                    " uName VARCHAR(25) REFERENCES USER(uName), " + 
                    " aDate_Created DATE, " + 
-                   " aDate DATE, " + 
                    " aDatetime datetime, " + 
                    " aType VARCHAR(25), " +
                    " aSummary VARCHAR(2550), " +
@@ -122,6 +121,17 @@ public class DatabaseHelper {
       conn.close();
    }//end main
    
+   public static void insert(String table, String data) throws SQLException{
+   Connection conn;
+   Statement stmt;
+   conn = getConnection();
+   stmt = conn.createStatement();
+   
+   String sql = "insert into '"+table+"' values('"+data+"')";
+   stmt.executeUpdate(sql);
+   stmt.close();
+   conn.close();
+   }
    
    public static int login(String username, String password) throws SQLException{
    Connection conn;
@@ -143,7 +153,19 @@ public class DatabaseHelper {
    
    }
    
-public static List view2(String table) throws SQLException{
+   public static void view(String table) throws SQLException{
+   Connection conn;
+   Statement stmt;
+   conn = getConnection();
+   stmt = conn.createStatement();
+   
+   String sql = "select * from '"+table;
+   stmt.executeUpdate(sql);
+   stmt.close();
+   conn.close();
+   }
+   
+   public static List view2(String table) throws SQLException{
         Connection conn;
         Statement stmt;
         conn = getConnection();
@@ -239,10 +261,10 @@ public static List view2(String table) throws SQLException{
    stmt = conn.createStatement();
    List array= new ArrayList();
    Date dNow= new Date();
-   SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+   SimpleDateFormat ft = new SimpleDateFormat("yyyy MM dd hh:mm:ss");
    
    
-   String sql = "SELECT aDatetime from appointment where aDate ='"+ft.format(dNow)+"'";
+   String sql = "SELECT pID, aDatetime from appointment where aDatetime='"+ft.format(dNow)+"'";
    ResultSet rs = stmt.executeQuery(sql);
    while(rs.next()){
    array.add(rs.getString(1));
@@ -250,7 +272,7 @@ public static List view2(String table) throws SQLException{
       return array;
   }
   
-  public static void insertPatient(String name, String lastname, String homephone, String mobile, String email, String address, String sex, String dob) throws SQLException{
+  void insertPatient(String name, String lastname, String homephone, String mobile, String email, String address, String sex, String dob) throws SQLException{
     Connection conn;
     Statement stmt;
     conn = getConnection();
@@ -261,22 +283,6 @@ public static List view2(String table) throws SQLException{
     stmt.close();
     conn.close();
    }
-  
-  public static void insertAppointment(Integer pID, String datetime, String appointmentType) throws SQLException{
-     Connection conn;
-     Statement stmt;
-     conn = getConnection();
-     stmt = conn.createStatement();
-     
-     Date dNow= new Date();
-     SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-     String username = SAMS.loggedUser;
-     
-     String sql = "insert into appointment (pId, uName, aDate_Created, aDatetime, aType) values('"+pID+"', '"+username+"','"+ft.format(dNow)+"', '"+datetime+"', '"+appointmentType+"')";
-     stmt.executeUpdate(sql);
-     stmt.close();
-     conn.close();
-  }
   
      public static List search(String table, String keyword) throws SQLException{
         Connection conn;

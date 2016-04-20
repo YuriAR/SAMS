@@ -12,7 +12,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import sams.DataModels.Appointment;
 import sams.DataModels.Condition;
@@ -27,14 +26,13 @@ public class ViewSearchDetailsController implements Initializable {
     private Summary summary;
     private Condition condition;
     
-    @FXML private Text name;
     @FXML private Label info;
     @FXML private Button backBtn;
     
     public void handleViewInfo(ActionEvent event) throws IOException{
     if(event.getSource() == backBtn){
             Stage stage = (Stage)backBtn.getScene().getWindow();
-            Parent root = FXMLLoader.load(getClass().getResource("viewScreen.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("view.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
@@ -43,10 +41,6 @@ public class ViewSearchDetailsController implements Initializable {
 
     public void setInfo(String info) {
         this.info.setText(info);
-    }
-    
-    public void setName(String name) {
-        this.name.setText(name);
     }
     
     public void setPatient(Patient patient) {
@@ -68,7 +62,7 @@ public class ViewSearchDetailsController implements Initializable {
     
     
     
-   @Override
+    @Override
     public void initialize(URL location, ResourceBundle resources) {
         if(SAMS.currentTable=="Patients"){
             String name, sname, phone, email, add, summary;

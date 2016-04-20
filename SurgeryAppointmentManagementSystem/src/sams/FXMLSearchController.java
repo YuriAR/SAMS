@@ -54,7 +54,7 @@ public class FXMLSearchController implements Initializable {
         tableViewSearch.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override 
             public void handle(MouseEvent event) {
-                if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+                /*if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
                     Patient selectedPatient = (Patient) tableViewSearch.getSelectionModel().getSelectedItem(); 
                     try{
                         Stage stage = (Stage)tableViewSearch.getScene().getWindow();
@@ -75,7 +75,7 @@ public class FXMLSearchController implements Initializable {
                     
                     
                 //name.setText(selectedPatient.getPName());    
-                }
+                }*/
              }
         });
         
@@ -148,7 +148,7 @@ public class FXMLSearchController implements Initializable {
                     break;
                 case "Appointment":
                     TableColumn apName = new TableColumn("Patient Name");
-                    TableColumn aDate = new TableColumn("Date");
+                    TableColumn aDate = new TableColumn("Date and time");
                     TableColumn aType = new TableColumn("Type");
                     
                     columns.add(apName);
