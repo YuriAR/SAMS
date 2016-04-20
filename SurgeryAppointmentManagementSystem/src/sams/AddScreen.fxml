@@ -19,26 +19,16 @@
                         <Insets />
                      </opaqueInsets>
                      <children>
-                        <Label blendMode="ADD" layoutX="178.0" layoutY="76.0" prefHeight="15.0" prefWidth="94.0" text="Patient ID" textOverrun="CLIP" />
-                        <Label layoutX="178.0" layoutY="263.0" text="Summary" />
+                        <Label blendMode="ADD" layoutX="178.0" layoutY="136.0" prefHeight="15.0" prefWidth="94.0" text="Patient ID" textOverrun="CLIP" />
                         <Label layoutX="178.0" layoutY="226.0" text="Reason for appointment" />
                         <Label layoutX="178.0" layoutY="189.0" text="Date" />
-                        <Label layoutX="178.0" layoutY="152.0" text="Date created" />
-                        <Label layoutX="178.0" layoutY="114.0" text="Name" />
-                        <TextField layoutX="321.0" layoutY="147.0" prefWidth="256.0" />
-                        <TextField layoutX="321.0" layoutY="71.0" prefHeight="25.0" prefWidth="256.0" />
-                        <TextField layoutX="321.0" layoutY="109.0" prefHeight="25.0" prefWidth="256.0" />
-                        <TextField layoutX="321.0" layoutY="184.0" prefWidth="256.0" />
-                        <TextField layoutX="321.0" layoutY="221.0" prefWidth="256.0" />
-                        <TextField layoutX="321.0" layoutY="258.0" prefWidth="256.0" />
-                        <Label fx:id="messageLabel1" layoutX="330.0" layoutY="35.0" prefHeight="15.0" prefWidth="94.0" text="Message" />
-                        <Button fx:id="addBtn1" layoutX="350.0" layoutY="330.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="23.0" prefWidth="55.0" text="Add" />
+                        <TextField fx:id="fPatientID" layoutX="321.0" layoutY="137.0" prefHeight="25.0" prefWidth="256.0" text="ID of patient" />
+                        <TextField fx:id="fDate" layoutX="321.0" layoutY="184.0" prefWidth="256.0" />
+                        <TextField fx:id="fReasonForAppointment" layoutX="321.0" layoutY="221.0" prefWidth="256.0" />
+                        <Label fx:id="messageLabel1" layoutX="352.0" layoutY="37.0" prefHeight="15.0" prefWidth="51.0" text="Message" />
+                        <Button fx:id="addBtn1" layoutX="342.0" layoutY="331.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="23.0" prefWidth="70.0" text="Add" />
+                        <Button fx:id="summaryBtn" layoutX="342.0" layoutY="284.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="23.0" prefWidth="70.0" text="Summary" />
                      </children></AnchorPane>
-            </content>
-          </Tab>
-          <Tab text="Treatment">
-            <content>
-              <AnchorPane id="AnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="tabAnchorPane" stylesheets="@OverallStyle.css" />
             </content>
           </Tab>
             <Tab text="Patient">
@@ -61,23 +51,39 @@
                         <TextField fx:id="fAddress" layoutX="272.0" layoutY="210.0" prefHeight="25.0" prefWidth="310.0" />
                         <TextField fx:id="fSex" layoutX="272.0" layoutY="241.0" prefHeight="25.0" prefWidth="310.0" />
                         <TextField fx:id="fDOB" layoutX="272.0" layoutY="272.0" prefHeight="25.0" prefWidth="310.0" />
-                        <Button fx:id="addBtn2" layoutX="353.0" layoutY="351.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="23.0" prefWidth="55.0" text="Add" />
+                        <Button fx:id="addBtn3" layoutX="342.0" layoutY="351.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="23.0" prefWidth="70.0" text="Add" />
                         <Label fx:id="messageLabel3" layoutX="352.0" layoutY="27.0" text="Message" />
                      </children></AnchorPane>
                </content>
             </Tab>
             <Tab text="Condition">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="tabAnchorPane" />
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="tabAnchorPane">
+                     <children>
+                        <Label layoutX="327.0" layoutY="187.0" text="Under construction" />
+                     </children></AnchorPane>
                </content>
             </Tab>
             <Tab text="Patient history">
                <content>
-                  <AnchorPane id="AnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="tabAnchorPane" stylesheets="@OverallStyle.css" />
+                  <AnchorPane id="AnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="tabAnchorPane" stylesheets="@OverallStyle.css">
+                     <children>
+                        <Label layoutX="327.0" layoutY="187.0" text="Under construction" />
+                     </children></AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Treatment">
+               <content>
+                  <AnchorPane id="AnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="tabAnchorPane" stylesheets="@OverallStyle.css">
+                     <children>
+                        <Label layoutX="327.0" layoutY="187.0" text="Under construction" />
+                     </children>
+                  </AnchorPane>
                </content>
             </Tab>
         </tabs>
       </TabPane>
-      <Button fx:id="dummyBtn" layoutX="364.0" layoutY="451.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="23.0" prefWidth="55.0" text="Back" />
+      <Button fx:id="backBtn" layoutX="696.0" layoutY="459.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="23.0" prefWidth="70.0" text="Back" />
+      <Button fx:id="viewBtn" layoutX="356.0" layoutY="459.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="23.0" prefWidth="70.0" text="View" />
    </children>
 </AnchorPane>

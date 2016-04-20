@@ -61,6 +61,8 @@ public class FXMLDocumentController implements Initializable {
         if(event.getSource() == logoutBtn) {
             stage = (Stage)logoutBtn.getScene().getWindow();
             stage.close();
+            SAMS.loggedPrivileges=null;
+            SAMS.loggedUser=null;
             root = FXMLLoader.load(getClass().getResource("loginScreen.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -77,7 +79,7 @@ public class FXMLDocumentController implements Initializable {
         
         if(event.getSource() == homeOneBtn) {
             stage = (Stage)homeOneBtn.getScene().getWindow();
-            stage.close();root = FXMLLoader.load(getClass().getResource("view.fxml"));
+            root = FXMLLoader.load(getClass().getResource("viewScreen.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
