@@ -262,7 +262,7 @@ public static List view2(String table) throws SQLException{
     conn.close();
    }
   
-  public static void insertAppointment(String datetime, String appointmentType) throws SQLException{
+  public static void insertAppointment(Integer pID, String datetime, String appointmentType) throws SQLException{
      Connection conn;
      Statement stmt;
      conn = getConnection();
@@ -270,9 +270,9 @@ public static List view2(String table) throws SQLException{
      
      Date dNow= new Date();
      SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-     datetime = ft.format(dNow);
+     String username = SAMS.loggedUser;
      
-     String sql = "insert into appointment (aDate_Created, aDatetime, aType) values(sysdate(), '"+datetime+"', '"+appointmentType+"')";
+     String sql = "insert into appointment (pId, uName, aDate_Created, aDatetime, aType) values('"+pID+"', '"+username+"','"+ft.format(dNow)+"', '"+datetime+"', '"+appointmentType+"')";
      stmt.executeUpdate(sql);
      stmt.close();
      conn.close();

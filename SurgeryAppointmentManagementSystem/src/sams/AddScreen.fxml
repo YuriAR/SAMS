@@ -19,14 +19,10 @@
                         <Insets />
                      </opaqueInsets>
                      <children>
-                        <Label blendMode="ADD" layoutX="178.0" layoutY="76.0" prefHeight="15.0" prefWidth="94.0" text="Patient ID" textOverrun="CLIP" />
+                        <Label blendMode="ADD" layoutX="178.0" layoutY="136.0" prefHeight="15.0" prefWidth="94.0" text="Patient ID" textOverrun="CLIP" />
                         <Label layoutX="178.0" layoutY="226.0" text="Reason for appointment" />
                         <Label layoutX="178.0" layoutY="189.0" text="Date" />
-                        <Label layoutX="178.0" layoutY="152.0" text="Date created" />
-                        <Label layoutX="178.0" layoutY="114.0" text="Name" />
-                        <TextField fx:id="fDateCreated" layoutX="321.0" layoutY="147.0" prefWidth="256.0" />
-                        <TextField fx:id="fPatientID" layoutX="321.0" layoutY="71.0" prefHeight="25.0" prefWidth="256.0" text="don't  use(?)" />
-                        <TextField fx:id="fPatientName" layoutX="321.0" layoutY="109.0" prefHeight="25.0" prefWidth="256.0" text="don't use" />
+                        <TextField fx:id="fPatientID" layoutX="321.0" layoutY="137.0" prefHeight="25.0" prefWidth="256.0" text="ID of patient" />
                         <TextField fx:id="fDate" layoutX="321.0" layoutY="184.0" prefWidth="256.0" />
                         <TextField fx:id="fReasonForAppointment" layoutX="321.0" layoutY="221.0" prefWidth="256.0" />
                         <Label fx:id="messageLabel1" layoutX="352.0" layoutY="37.0" prefHeight="15.0" prefWidth="51.0" text="Message" />

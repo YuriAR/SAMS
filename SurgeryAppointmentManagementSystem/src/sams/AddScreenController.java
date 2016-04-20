@@ -54,14 +54,12 @@ public class AddScreenController implements Initializable {
         }
         
         if(event.getSource() == addBtn1) {
-            //String pID = fPatientID.getText();
-            //String pPatient = fSurname.getText();
-            //String pDateCreated = fDateCreated.getText(); //remove this
-            
+            String pIDD = fPatientID.getText();
+            Integer pID = Integer.parseInt(pIDD);
             String pDate = fDate.getText();
             String pReason = fReasonForAppointment.getText();
             
-            DatabaseHelper.insertAppointment(pDate, pReason);
+            DatabaseHelper.insertAppointment(pID, pDate, pReason);
             
             messageLabel1.setText("Done");
         }
@@ -96,7 +94,6 @@ public class AddScreenController implements Initializable {
       Date dNow= new Date();
       SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
       
-      fDateCreated.setText(ft.format(dNow));
       fDate.setText(ft.format(dNow));
     }
     
