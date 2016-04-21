@@ -83,7 +83,10 @@ public class ViewSearchDetailsController implements Initializable {
                 type = SAMS.currentAppointment.getAType();
                 name = SAMS.currentAppointment.getApName();
                 summary = SAMS.currentAppointment.getSummary();
-                setInfo("Patient Number: "+name+"\n\nType: "+type+"\n\nSummary: "+summary);
+                if("secretary".equals(SAMS.loggedPrivileges)){
+                setInfo("Patient Number: "+name+"\n\nType: "+type);}
+                else
+                    setInfo("Patient Number: "+name+"\n\nType: "+type+"\n\nSummary: "+summary);
                 break;
             case "Condition":
                 String description, threat;

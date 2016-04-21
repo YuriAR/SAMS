@@ -32,7 +32,6 @@ public class AddScreenController implements Initializable {
     
     @FXML //add appointment details
     TextField fPatientID, fPatientName, fDateCreated, fDate, fReasonForAppointment;
-
     public void handleButtonAction(ActionEvent event) throws IOException, SQLException{
     
         Stage stage;
@@ -106,9 +105,11 @@ public class AddScreenController implements Initializable {
       SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
       
       fDate.setText(ft.format(dNow));
-      
-      if(SAMS.loggedPrivileges == "secretary"){
+      System.out.println(SAMS.loggedPrivileges);
+      if("secretary".equals(SAMS.loggedPrivileges)){
           this.summaryBtn.setVisible(false);
+          this.summaryBtn.setManaged(false);
+      } else {
       }
     }
     
