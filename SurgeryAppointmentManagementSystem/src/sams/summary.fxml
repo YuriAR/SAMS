@@ -20,4 +20,5 @@
     
     <TextArea fx:id="sum" GridPane.columnIndex="0" GridPane.rowIndex="0"
     GridPane.columnSpan="10" GridPane.rowSpan="10"/> 
-    <Button fx:id="submit" text="Submit" GridPane.columnIndex="5" GridPane.rowIndex="11" onAction="#handleButtonSubmit"</GridPane>
+    <Button fx:id="submit" text="Submit" GridPane.columnIndex="5" GridPane.rowIndex="11" onAction="#handleButtonSubmit"/>
+</GridPane>

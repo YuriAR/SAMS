@@ -32,7 +32,7 @@ public class ViewSearchDetailsController implements Initializable {
     public void handleViewInfo(ActionEvent event) throws IOException{
     if(event.getSource() == backBtn){
             Stage stage = (Stage)backBtn.getScene().getWindow();
-            Parent root = FXMLLoader.load(getClass().getResource("view.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("viewScreen.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
@@ -64,22 +64,37 @@ public class ViewSearchDetailsController implements Initializable {
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        if(SAMS.currentTable=="Patients"){
-            String name, sname, phone, email, add, summary;
-            name = SAMS.currentPatient.getPName();
-            sname = SAMS.currentPatient.getPSurname();
-            phone = SAMS.currentPatient.getPMobPhone();
-            email = SAMS.currentPatient.getPEmail();
-            add = SAMS.currentPatient.getPAddress();
-            setInfo("Name: "+name+" "+sname+"\n\nPhone: "+phone+"\n\nEmail: "+email+"\n\nAddress: "+add);
-        }else if(SAMS.currentTable=="Appointments"){
-            String summary, id, type, name;
-            Date date;
-            id = SAMS.currentAppointment.getApID();
-            type = SAMS.currentAppointment.getAType();
-            name = SAMS.currentAppointment.getApName();
-            summary = SAMS.currentAppointment.getSummary();
-            setInfo("Appointment Number: "+id+"\n\nType: "+type+"\n\nName: "+name+"\n\nSummary: "+summary);
+        System.out.print(SAMS.currentTable);
+        switch(SAMS.currentTable){
+            case "Patients":
+                String name, sname, phone, email, add;
+                name = SAMS.currentPatient.getPName();
+                sname = SAMS.currentPatient.getPSurname();
+                phone = SAMS.currentPatient.getPMobPhone();
+                email = SAMS.currentPatient.getPEmail();
+                add = SAMS.currentPatient.getPAddress();
+                setInfo("Name: "+name+" "+sname+"\n\nPhone: "+phone+"\n\nEmail: "+email+"\n\nAddress: "+add);
+                break;
+            case "Appointment":
+                String summary, id, type;
+                Date date;
+                System.out.print(SAMS.currentAppointment);
+                id = SAMS.currentAppointment.getApID();
+                type = SAMS.currentAppointment.getAType();
+                name = SAMS.currentAppointment.getApName();
+                summary = SAMS.currentAppointment.getSummary();
+                setInfo("Patient Number: "+name+"\n\nType: "+type+"\n\nSummary: "+summary);
+                break;
+            case "Condition":
+                String description, threat;
+                id = SAMS.currentCondition.getCID();
+                name = SAMS.currentCondition.getCName();
+                description = SAMS.currentCondition.getCDesc();
+                threat = SAMS.currentCondition.getTLevel();
+                setInfo("Condition ID: "+id+"\n\nName: "+name+"\n\nDescription: "+description+"\n\nThreat Level: "+threat);
+                break;
+            default:
+                break;
         }
     }
     

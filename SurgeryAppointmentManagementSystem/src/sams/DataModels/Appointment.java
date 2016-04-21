@@ -16,6 +16,7 @@ public class Appointment {
     private String apId;
     private String apName;
     private Date aDate;
+    private String aDates;
     private String aType;
     private String summary;
 
@@ -31,8 +32,8 @@ public class Appointment {
         return apId;
     }
     
-    public void setApID(){
-        this.apId = apId;
+    public void setApID(String apID){
+        this.apId = apID;
     }
     
     public String getApName() {
@@ -49,6 +50,14 @@ public class Appointment {
 
     public void setADate(Date aDate) {
         this.aDate = aDate;
+    }
+    
+    public String getADates() {
+        return aDates;
+    }
+
+    public void setADates(String aDates) {
+        this.aDates = aDates;
     }
 
     public String getAType() {

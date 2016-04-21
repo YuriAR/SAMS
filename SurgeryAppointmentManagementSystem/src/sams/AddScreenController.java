@@ -16,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import sams.DataModels.Appointment;
 
 
 public class AddScreenController implements Initializable {
@@ -47,7 +48,7 @@ public class AddScreenController implements Initializable {
         
         if(event.getSource() == viewBtn) {
             stage = (Stage)viewBtn.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("viewScreen.fxml")); //change into view.fxml
+            root = FXMLLoader.load(getClass().getResource("viewScreen.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
@@ -65,8 +66,18 @@ public class AddScreenController implements Initializable {
         }
         
         if(event.getSource() == summaryBtn) {
+            String pIDD = fPatientID.getText();
+            String pDate = fDate.getText();
+            String pReason = fReasonForAppointment.getText();
+            Appointment a = new Appointment();
+            a.setApID(pIDD);
+            a.setAType(pReason);
+            a.setADates(pDate);
+            System.out.println(a.getApID());
+            SAMS.currentAppointment = a;
+            
             stage = (Stage)summaryBtn.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("viewScreen.fxml")); //change into view.fxml
+            root = FXMLLoader.load(getClass().getResource("summary.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
@@ -95,6 +106,10 @@ public class AddScreenController implements Initializable {
       SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
       
       fDate.setText(ft.format(dNow));
+      
+      if(SAMS.loggedPrivileges == "secretary"){
+          this.summaryBtn.setVisible(false);
+      }
     }
     
 }

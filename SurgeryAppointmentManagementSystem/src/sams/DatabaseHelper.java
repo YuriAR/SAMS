@@ -167,8 +167,8 @@ public static List view2(String table) throws SQLException{
                         break;
                     case "Appointment":
                         Appointment a = new Appointment();
-                        a.setApName(rs.getString("pName"));
-                        a.setADate(rs.getDate("aDatetime"));
+                        a.setApName(rs.getString("pId"));
+                        a.setADates(rs.getString("aDatetime"));
                         a.setAType(rs.getString("aType"));
                         results.add(a);
                         break;
@@ -242,7 +242,7 @@ public static List view2(String table) throws SQLException{
    SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
    
    
-   String sql = "SELECT aDatetime from appointment where aDate ='"+ft.format(dNow)+"'";
+   String sql = "SELECT aDatetime from appointment where aDate_Created ='"+ft.format(dNow)+"'";
    ResultSet rs = stmt.executeQuery(sql);
    while(rs.next()){
    array.add(rs.getString(1));
@@ -278,7 +278,23 @@ public static List view2(String table) throws SQLException{
      conn.close();
   }
   
-     public static List search(String table, String keyword) throws SQLException{
+  public static void insertAppointmentSum(Integer pID, String datetime, String appointmentType, String summary) throws SQLException{
+     Connection conn;
+     Statement stmt;
+     conn = getConnection();
+     stmt = conn.createStatement();
+     
+     Date dNow= new Date();
+     SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+     String username = SAMS.loggedUser;
+     
+     String sql = "insert into appointment (pId, uName, aDate_Created, aDatetime, aType, aSummary) values('"+pID+"', '"+username+"','"+ft.format(dNow)+"', '"+datetime+"', '"+appointmentType+"', '"+summary+"')";
+     stmt.executeUpdate(sql);
+     stmt.close();
+     conn.close();
+  }
+  
+      public static List search(String table, String keyword) throws SQLException{
         Connection conn;
         Statement stmt;
         //PreparedStatement stmt = conn.prepareStatement("UPDATE user_table SET name=? WHERE id=?");
@@ -296,7 +312,7 @@ public static List view2(String table) throws SQLException{
                          "SELECT * FROM Patients where pAddress like '%"+ keyword + "%'"};
         }
         else if (table.equals("Appointment")){
-            query = new String[]{"SELECT * FROM Appointment join Patients using (pId) where aDatetime like '%"+ keyword + "%'", 
+            query = new String[]{"SELECT * FROM Appointment join Patients using (pId) where aDate_Created like '%"+ keyword + "%'", 
                          "SELECT * FROM Appointment join Patients using (pId) where aType like '%"+ keyword + "%'",
                          "SELECT * FROM Appointment join Patients using (pId) where pName like '%"+ keyword + "%'"};
         }
@@ -324,7 +340,7 @@ public static List view2(String table) throws SQLException{
                     case "Appointment":
                         Appointment a = new Appointment();
                         a.setApName(rs.getString("pName"));
-                        a.setADate(rs.getDate("aDatetime"));
+                        a.setADates(rs.getString("aDatetime"));
                         a.setAType(rs.getString("aType"));
                         results.add(a);
                         break;

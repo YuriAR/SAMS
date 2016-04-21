@@ -27,7 +27,7 @@
                         <TextField fx:id="fReasonForAppointment" layoutX="321.0" layoutY="221.0" prefWidth="256.0" />
                         <Label fx:id="messageLabel1" layoutX="352.0" layoutY="37.0" prefHeight="15.0" prefWidth="51.0" text="Message" />
                         <Button fx:id="addBtn1" layoutX="342.0" layoutY="331.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="23.0" prefWidth="70.0" text="Add" />
-                        <Button fx:id="summaryBtn" layoutX="342.0" layoutY="284.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="23.0" prefWidth="70.0" text="Summary" />
+                        <Button fx:id="summaryBtn" layoutX="342.0" layoutY="284.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="23.0" prefWidth="70.0" text="Summary" visible="true" />
                      </children></AnchorPane>
             </content>
           </Tab>

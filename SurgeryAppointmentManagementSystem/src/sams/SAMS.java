@@ -7,7 +7,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import sams.DataModels.Appointment;
+import sams.DataModels.Condition;
 import sams.DataModels.Patient;
+
 
 
 public class SAMS extends Application {
@@ -16,6 +18,7 @@ public class SAMS extends Application {
     public static String currentTable=null;
     public static Patient currentPatient=null;
     public static Appointment currentAppointment=null;
+    public static Condition currentCondition=null;
     
     @Override
     public void start(Stage stage) throws Exception {

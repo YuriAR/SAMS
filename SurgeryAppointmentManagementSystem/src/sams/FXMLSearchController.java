@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.ResourceBundle;
-import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -27,7 +26,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.scene.text.Text;
 
@@ -54,17 +52,25 @@ public class FXMLSearchController implements Initializable {
         tableViewSearch.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override 
             public void handle(MouseEvent event) {
-                /*if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
-                    Patient selectedPatient = (Patient) tableViewSearch.getSelectionModel().getSelectedItem(); 
+                if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+                    final String selectedTable = (String)tableCombo.getSelectionModel().getSelectedItem();
+                    switch(selectedTable){
+                        case "Patients": Patient selectedPatient = (Patient) tableViewSearch.getSelectionModel().getSelectedItem();
+                        SAMS.currentPatient=selectedPatient;
+                        break;
+                        case"Appointment": Appointment selectedAppointment = (Appointment) tableViewSearch.getSelectionModel().getSelectedItem();
+                        SAMS.currentAppointment=selectedAppointment;
+                        break;
+                        case "Condition": Condition selectedCondition = (Condition) tableViewSearch.getSelectionModel().getSelectedItem();
+                        SAMS.currentCondition=selectedCondition;
+                        break;
+                        default: break;
+                    }
                     try{
+                        SAMS.currentTable=selectedTable;
                         Stage stage = (Stage)tableViewSearch.getScene().getWindow();
-                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/sams/FXMLViewSearchResultDetails.fxml"));
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLViewSearchResultDetails.fxml"));
                         Parent root = fxmlLoader.load();
-                        ViewSearchDetailsController controller = fxmlLoader.<ViewSearchDetailsController>getController();
-                        controller.setName(selectedPatient.getPName());
-                        
-                        
-
                         Scene scene = new Scene(root);
                         stage.setScene(scene);
                         stage.show();
@@ -73,9 +79,8 @@ public class FXMLSearchController implements Initializable {
                         e.printStackTrace();
                     }
                     
-                    
-                //name.setText(selectedPatient.getPName());    
-                }*/
+                   
+                }
              }
         });
         
@@ -148,15 +153,15 @@ public class FXMLSearchController implements Initializable {
                     break;
                 case "Appointment":
                     TableColumn apName = new TableColumn("Patient Name");
-                    TableColumn aDate = new TableColumn("Date and time");
+                    TableColumn aDates = new TableColumn("Datetime");
                     TableColumn aType = new TableColumn("Type");
                     
                     columns.add(apName);
-                    columns.add(aDate);
+                    columns.add(aDates);
                     columns.add(aType);
                     
                     apName.setCellValueFactory(new PropertyValueFactory<Appointment, String>("apName"));
-                    aDate.setCellValueFactory(new PropertyValueFactory<Appointment, String>("aDate"));
+                    aDates.setCellValueFactory(new PropertyValueFactory<Appointment, String>("aDates"));
                     aType.setCellValueFactory(new PropertyValueFactory<Appointment, String>("aType"));
                     
                     tableViewSearch.getColumns().addAll(columns);

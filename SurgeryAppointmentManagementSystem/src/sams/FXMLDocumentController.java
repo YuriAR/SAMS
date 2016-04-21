@@ -85,29 +85,6 @@ public class FXMLDocumentController implements Initializable {
             stage.show();
         }
         
-        if(event.getSource() == homeTwoBtn) {
-            stage = (Stage)homeTwoBtn.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("summary.fxml"));
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        }
-        
-        if(event.getSource() == homeThreeBtn) {
-            stage = (Stage)homeThreeBtn.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("dummy.fxml"));
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        }
-        
-        if(event.getSource() == homeFourBtn) {
-            stage = (Stage)homeFourBtn.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("dummy.fxml"));
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        }
         
         if(event.getSource() == searchBtn) {
             stage = (Stage)searchBtn.getScene().getWindow();

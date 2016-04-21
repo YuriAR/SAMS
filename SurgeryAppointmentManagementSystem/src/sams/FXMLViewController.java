@@ -10,6 +10,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -47,6 +48,8 @@ public class FXMLViewController implements Initializable {
     
     Collection<TableColumn> columns = new ArrayList<>();
     Patient selectedPatient;
+    Appointment selectedAppointment;
+    Condition selectedCondition;
     
     @FXML private Text actiontarget;
     @FXML private TableView tableViewChoose;
@@ -83,10 +86,6 @@ public class FXMLViewController implements Initializable {
                                     Appointment selectedAppointment = (Appointment) tableViewChoose.getSelectionModel().getSelectedItem();
                                     DatabaseHelper.delete(selectedTable, "apID", selectedAppointment.getApID());
                                     break;
-                                case "Summaries":
-                                    selectedPatient = (Patient) tableViewChoose.getSelectionModel().getSelectedItem();
-                                    DatabaseHelper.delete(selectedTable, "pID", selectedPatient.getPID());
-                                    break;
                                 case "Condition":
                                     Condition selectedCondition = (Condition) tableViewChoose.getSelectionModel().getSelectedItem();
                                     DatabaseHelper.delete(selectedTable, "cID", selectedCondition.getCID());
@@ -104,8 +103,17 @@ public class FXMLViewController implements Initializable {
                 }else if(event.isSecondaryButtonDown() && ! event.isShiftDown()){
                     Stage stage = (Stage)tableViewChoose.getScene().getWindow();
                     try{
-                        selectedPatient = (Patient) tableViewChoose.getSelectionModel().getSelectedItem();
-                        SAMS.currentPatient = selectedPatient;
+                        SAMS.currentTable = selectedTable;
+                        if(tableViewChoose.getSelectionModel().getSelectedItem() instanceof Patient){
+                         selectedPatient = (Patient) tableViewChoose.getSelectionModel().getSelectedItem();   
+                         SAMS.currentPatient = selectedPatient;
+                        }else if(tableViewChoose.getSelectionModel().getSelectedItem() instanceof Appointment){
+                            selectedAppointment = (Appointment) tableViewChoose.getSelectionModel().getSelectedItem();
+                            SAMS.currentAppointment = selectedAppointment;
+                        }else if(tableViewChoose.getSelectionModel().getSelectedItem() instanceof Condition){
+                            selectedCondition = (Condition) tableViewChoose.getSelectionModel().getSelectedItem();
+                            SAMS.currentCondition = selectedCondition;
+                        }
                         Parent root = FXMLLoader.load(getClass().getResource("FXMLViewSearchResultDetails.fxml"));
                         Scene scene = new Scene(root);
                         stage.setScene(scene);
@@ -248,21 +256,6 @@ public class FXMLViewController implements Initializable {
                             //Direct to Joonas' page
                         }
                     });
-                    //END
-                    break;
-                case "Summaries":
-                    TableColumn spName = new TableColumn("Patient Name");
-                    spName.setCellFactory(TextFieldTableCell.forTableColumn());
-                    TableColumn summary = new TableColumn("Summary");
-                    summary.setCellFactory(TextFieldTableCell.forTableColumn());
-                    
-                    columns.add(spName);
-                    columns.add(summary);
-                    
-                    spName.setCellValueFactory(new PropertyValueFactory<Summary, String>("spName"));
-                    summary.setCellValueFactory(new PropertyValueFactory<Summary, String>("summary"));
-                    
-                    tableViewChoose.getColumns().addAll(columns);
                     break;
                 case "Conditions":
                     TableColumn cName = new TableColumn("Condition Name");
@@ -324,7 +317,7 @@ public class FXMLViewController implements Initializable {
                     tableViewChoose.getColumns().addAll(columns);
                     break;
                 case "Appointment":
-                    TableColumn apName = new TableColumn("Patient Name");
+                    TableColumn apName = new TableColumn("Patient ID");
                     apName.setCellFactory(TextFieldTableCell.forTableColumn());
                     apName.setOnEditCommit(
                         new EventHandler<CellEditEvent<Appointment, String>>() {
@@ -340,21 +333,21 @@ public class FXMLViewController implements Initializable {
                         }
                     );
                     
-                    TableColumn aDate = new TableColumn("Date and time");
-                    aDate.setCellFactory(TextFieldTableCell.forTableColumn());
-                    /*aDate.setOnEditCommit(
+                    TableColumn aDates = new TableColumn("Datetime");
+                    aDates.setCellFactory(TextFieldTableCell.forTableColumn());
+                    aDates.setOnEditCommit(
                         new EventHandler<CellEditEvent<Appointment, String>>() {
                             @Override
                             public void handle(CellEditEvent<Appointment, String> t) {
                                 ((Appointment) t.getTableView().getItems().get(
                                 t.getTablePosition().getRow())
-                                ).setADate(t.getNewValue());
+                                ).setADates(t.getNewValue());
                                 try{
-                                    DatabaseHelper.update(selectedTable, "apDate", t.getNewValue(), ((Appointment) t.getTableView().getItems().get(t.getTablePosition().getRow())).getApID());
+                                    DatabaseHelper.update(selectedTable, "aDates", t.getNewValue(), ((Appointment) t.getTableView().getItems().get(t.getTablePosition().getRow())).getApID());
                                 }catch(SQLException e){}
                             }
                         }
-                    );*/
+                    );
                     
                     TableColumn aType = new TableColumn("Type");
                     aType.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -371,13 +364,12 @@ public class FXMLViewController implements Initializable {
                             }
                         }
                     );
-                    
                     columns.add(apName);
-                    columns.add(aDate);
+                    columns.add(aDates);
                     columns.add(aType);
                     
                     apName.setCellValueFactory(new PropertyValueFactory<Appointment, String>("apName"));
-                    aDate.setCellValueFactory(new PropertyValueFactory<Appointment, String>("aDate"));
+                    aDates.setCellValueFactory(new PropertyValueFactory<Appointment, String>("aDates"));
                     aType.setCellValueFactory(new PropertyValueFactory<Appointment, String>("aType"));
                     
                     tableViewChoose.getColumns().addAll(columns);
